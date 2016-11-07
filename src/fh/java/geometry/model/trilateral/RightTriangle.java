@@ -5,10 +5,9 @@ public class  RightTriangle extends TriangularShape {
     private double sideA;
     private double sideB;
 
-
-    public RightTriangle(int x, int y,double sideA, double sideB) {
-        this.x=x;
-        this.y=y;
+    public RightTriangle(int x, int y, double sideA, double sideB) {
+        this.x = x;
+        this.y = y;
         this.sideA = sideA;
         this.sideB = sideB;
     }
@@ -29,7 +28,42 @@ public class  RightTriangle extends TriangularShape {
         this.sideB = sideB;
     }
 
-    // TODO: Implement equals() and hashCode()
+    public double calcSideC() {
+        return Math.sqrt(sideA * sideA + sideB * sideB);
+    }
+
+    @Override
+    public double calcArea() {
+        return (sideA * sideB) / 2;
+    }
+
+    @Override
+    public double calcPerimeter() {
+        return sideA + sideB + calcSideC();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        RightTriangle that = (RightTriangle) o;
+
+        if (Double.compare(that.sideA, sideA) != 0) return false;
+        return Double.compare(that.sideB, sideB) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        long temp;
+        temp = Double.doubleToLongBits(sideA);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(sideB);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 
     @Override
     public String toString() {
@@ -40,11 +74,6 @@ public class  RightTriangle extends TriangularShape {
         sb.append(", perimeter=").append(calcPerimeter());
         sb.append('}');
         return sb.toString();
-    }
-
-
-    public double calcSideC() {
-        return Math.sqrt(sideA*sideA+sideB*sideB);
     }
 
 }

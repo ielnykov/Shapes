@@ -1,19 +1,14 @@
 package fh.java.geometry.model.quadrilateral;
 
-/**
- * Created by johann on 11/1/16.
- */
 public class Square extends QuadrangularShape {
 
     protected double sideA;
 
-    public Square() {
-    }
+    public Square() {}
 
-    public Square(int x, int y,double sideA) {
-
-        this.x=x;
-        this.y=y;
+    public Square(int x, int y, double sideA) {
+        this.x = x;
+        this.y = y;
         this.sideA = sideA;
     }
 
@@ -25,7 +20,35 @@ public class Square extends QuadrangularShape {
         this.sideA = sideA;
     }
 
-    // TODO: Implement equals() and hashCode()
+    @Override
+    public double calcArea() {
+        return sideA * sideA;
+    }
+
+    @Override
+    public double calcPerimeter() {
+        return sideA * 4;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Square square = (Square) o;
+
+        return Double.compare(square.sideA, sideA) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        long temp;
+        temp = Double.doubleToLongBits(sideA);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 
     @Override
     public String toString() {

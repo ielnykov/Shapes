@@ -4,9 +4,9 @@ public class Circle extends CurvedShape {
 
     private double radius;
 
-    public Circle(int x, int y,double radius) {
-        this.x=x;
-        this.y=y;
+    public Circle(int x, int y, double radius) {
+        this.x = x;
+        this.y = y;
         this.radius = radius;
     }
 
@@ -18,10 +18,37 @@ public class Circle extends CurvedShape {
         this.radius = radius;
     }
 
-    
+    @Override
+    public double calcArea() {
+        return Math.PI * radius * radius;
+    }
 
-    // TODO: Implement equals() and hashCode()
-    
+    @Override
+    public double calcPerimeter() {
+        return 2 * Math.PI * radius;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Circle circle = (Circle) o;
+
+        return Double.compare(circle.radius, radius) == 0;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        long temp;
+        temp = Double.doubleToLongBits(radius);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Circle{");

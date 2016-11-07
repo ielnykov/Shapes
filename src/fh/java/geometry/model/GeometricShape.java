@@ -1,7 +1,6 @@
 package fh.java.geometry.model;
 
 public abstract class GeometricShape {
-    
 
     protected int x;
     protected int y;
@@ -26,5 +25,21 @@ public abstract class GeometricShape {
 
     public abstract double calcPerimeter();
 
-   // TODO: Implement equals() and hashCode()
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GeometricShape that = (GeometricShape) o;
+
+        if (x != that.x) return false;
+        return y == that.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        return result;
+    }
 }

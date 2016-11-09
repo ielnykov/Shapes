@@ -47,9 +47,11 @@ public class Parallelogramm extends Square {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        Parallelogramm rectangle = (Parallelogramm) o;
+        Parallelogramm that = (Parallelogramm) o;
 
-        return Double.compare(rectangle.sideB, sideB) == 0;
+        if (Double.compare(that.sideB, sideB) != 0) return false;
+        return Double.compare(that.height, height) == 0;
+
     }
 
     @Override
@@ -58,18 +60,19 @@ public class Parallelogramm extends Square {
         long temp;
         temp = Double.doubleToLongBits(sideB);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(height);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Rectangle{");
-        sb.append("sideA=").append(sideA);
-        sb.append(", sideB=").append(sideB);
+        final StringBuffer sb = new StringBuffer("Parallelogramm{");
+        sb.append("sideB=").append(sideB);
+        sb.append(", height=").append(height);
         sb.append(", area=").append(calcArea());
         sb.append(", perimeter=").append(calcPerimeter());
         sb.append('}');
         return sb.toString();
     }
-
 }

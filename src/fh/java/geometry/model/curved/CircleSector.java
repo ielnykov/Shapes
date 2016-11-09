@@ -1,13 +1,13 @@
 package fh.java.geometry.model.curved;
 
-public class CircleSegment extends Circle {
+public class CircleSector extends Circle {
 
     private double radius;
     private double alpha;
 
-    public CircleSegment() {}
+    public CircleSector() {}
 
-    public CircleSegment(int x, int y, double radius, double alpha) {
+    public CircleSector(int x, int y, double radius, double alpha) {
         this.x = x;
         this.y = y;
         this.radius = radius;
@@ -33,13 +33,13 @@ public class CircleSegment extends Circle {
     @Override
     public double calcArea() {
         double angle = Math.toRadians(this.alpha);
-        return radius * radius / 2 * (angle - Math.sin(angle));
+        return radius * radius * angle / 2;
     }
 
     @Override
     public double calcPerimeter() {
         double angle = Math.toRadians(this.alpha);
-        return Math.sqrt(2 * (radius * radius) - 2 * (radius * radius) * Math.cos(angle)) + radius * angle;
+        return 2 * radius + radius * angle;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class CircleSegment extends Circle {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        CircleSegment that = (CircleSegment) o;
+        CircleSector that = (CircleSector) o;
 
         if (Double.compare(that.radius, radius) != 0) return false;
         return Double.compare(that.alpha, alpha) == 0;
@@ -68,7 +68,7 @@ public class CircleSegment extends Circle {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("CircleSegment{");
+        final StringBuffer sb = new StringBuffer("CircleSector{");
         sb.append("radius=").append(radius);
         sb.append(", alpha=").append(alpha);
         sb.append(", area=").append(calcArea());

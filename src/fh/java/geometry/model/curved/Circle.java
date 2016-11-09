@@ -4,6 +4,8 @@ public class Circle extends CurvedShape {
 
     private double radius;
 
+    public Circle() {}
+
     public Circle(int x, int y, double radius) {
         this.x = x;
         this.y = y;
